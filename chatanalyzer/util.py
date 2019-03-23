@@ -15,12 +15,11 @@ def get_url(url):
 
 def echo_all(updates):
     for update in updates["result"]:
-        print(update)
+
         try:
             text = update["message"]["text"]
             chat = update["message"]["chat"]["id"]
-            print(text)
-            print(chat)
+            return {"chat_id": chat,"text":text}
         except Exception as e:
             print(e)
 
@@ -59,5 +58,7 @@ def main():
         updates = get_updates(last_update_id)
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
-            echo_all(updates)
+            return echo_all(updates)
         time.sleep(0.5)
+
+
