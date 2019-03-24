@@ -21,7 +21,7 @@ function drawEmotionsChart(array_for_graph, prev){
     var data = new google.visualization.arrayToDataTable(array_for_graph);
     var options = {
         hAxis: {
-          title: 'Time'
+          title: 'Progress in Conversation (%)'
         },
         vAxis: {
           title: 'Score'
@@ -150,9 +150,6 @@ function removeIrrelevant() {
 
 }
 
-function drawEmotionsChart(data){
-
-}
 var x = 1;
 $(document).ready(function () {
     getMessages();
@@ -160,4 +157,11 @@ $(document).ready(function () {
 
     $('#btn-remove-irrelevant').click(removeIrrelevant);
 });
+
+function clicked(element){
+    aidi = element.id;
+    number = aidi.slice(3);
+    num = (parseInt(number)-1)*10;
+    
+}
 

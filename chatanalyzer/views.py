@@ -52,7 +52,7 @@ def emotions_graph_data(messages):
         maximum = max(emotions.items(), key=operator.itemgetter(1))[0]
         prevalent.append(maximum)
         amount = (emotions[maximum])
-        graph_data.append([j, amount])
+        graph_data.append([j*10, amount])
         emotions = {'sadness': 0.0, 'joy': 0.0, 'fear': 0.0, 'disgust': 0.0, 'anger': 0.0}
 
     return graph_data, prevalent
