@@ -1,13 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="col-1" style="height: 100px;">
+                    <img src="/static/chatanalyzer/images/happy_emoji.jpg" style="height: 97px">
+                </div>
+                <div class="col-1" style="height: 100px;">
+                    <img src="/static/chatanalyzer/images/sad_emoji.png" style="height: 97px">
+                </div>
+                <div class="col-1" style="height: 100px;">
+                    <img src="/static/chatanalyzer/images/surprised_emoji.png" style="height: 97px">
+                </div>
+                <div class="col-1" style="height: 100px;">
+                    <img src="/static/chatanalyzer/images/angry_emoji.png" style="height: 97px">
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-2">
+                <div class="row">
+                    <div class="col-md-6" style="height: 300px; float: left">
+                        <img src="/static/chatanalyzer/images/chat_template.png" style="height: 297px">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 offset-md-2">
+                        <div class="col-md-6" style="height: 750px; float: right">
+                            <img src="/static/chatanalyzer/images/chat_template.png" style="height: 747px">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="card col-md-6" style="height: 500px; width: 500px ;float: left;">
-            <div class="card-body"></div>
         </div>
-        <div class="card col-md-6" style="height: 800px; float: right">
-            <div class="card-body"></div>
-        </div>
+
     </div>
 
 {% endblock %}

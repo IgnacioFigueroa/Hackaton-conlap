@@ -88,14 +88,14 @@ def natural_languaje(message):
                           keywords=KeywordsOptions(),
                           emotion=EmotionOptions())).get_result()
 
-    print(json.dumps(response, indent=2))
+    return response
 
 
 last_update_id = None
 while True:
     updates = get_updates(last_update_id)
     try:
-        if len(updates) > 0:
+        if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
             echo_all(updates)
         time.sleep(0.5)
