@@ -55,19 +55,3 @@ def emotions_graph_data(messages):
         #amount.append(emotions[maximum])
 
     return graph_data
-
-
-def calculate_emotions(message):
-    emotions = {"sadness": 0.0, "joy": 0.0, "fear": 0.0, "disgust": 0.0, "anger": 0.0}
-    try:
-        data = util.natural_languaje((message["result"])[0]["message"]["text"])
-    except:
-        if re.findall("hax*", (message["result"])[0]["message"]["text"]):
-            emotions = {"sadness": 0.0, "joy": 0.9, "fear": 0.0, "disgust": 0.0, "anger": 0.0}
-        return emotions
-    emotions["sadness"] += data["emotion"]["document"]["emotion"]["sadness"]
-    emotions["joy"] += data["emotion"]["document"]["emotion"]["joy"]
-    emotions["fear"] += data["emotion"]["document"]["emotion"]["fear"]
-    emotions["disgust"] += data["emotion"]["document"]["emotion"]["disgust"]
-    emotions["anger"] += data["emotion"]["document"]["emotion"]["anger"]
-    return emotions
