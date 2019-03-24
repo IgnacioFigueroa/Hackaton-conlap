@@ -14,21 +14,49 @@ function getchart(){
 }
 
 function getMessages() {
+    var chat_body = $('#chat-box');
     $.ajax({
         async: true,
         type : 'GET',
         url: '/get_messages/',
         datatype : 'json',
         success : function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var message_id = data[i]['message_id'];
+                var user_id = data[i]['user_id'];
+                var user_name = data[i]['user_name'] + ' ' + data[i]['user_last'];
+                var date = data[i]['message_date'];
+                var text = data[i]['text'];
+                var emotions_sum = data[i]['emotions_sum'];
+
+                chat_body.append($('<div class="' + emotions_sum + '" id="' + message_id + '">').text(text));
+
+
+            }
 
         }
     })
 }
 
-function drawEmotionsChart(data){
+function removeIrrelevant() {
+    if(x === 1){
+        $('.I').hide();
+        x = 0 ;
+    }
+    else{
+        $('.I').show();
+        x = 1 ;
+    }
+
+
 
 }
 
+function drawEmotionsChart(data){
+
+}
+var x = 1;
 $(document).ready(function () {
-    getchart()
+    getMessages()
+    $('#btn-remove-irrelevant').click(removeIrrelevant)
 });

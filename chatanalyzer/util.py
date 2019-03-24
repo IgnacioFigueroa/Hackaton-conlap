@@ -18,8 +18,14 @@ def get_messages_info(request):
     cursor.execute("SELECT * FROM message")
     rows = cursor.fetchall()
     data = []
+
     for id, message_id, user_id, user_name, user_last, chat_id, chat_title, chat_type, message_date, text, sadness, joy, fear, disgust, anger in rows:
+        sum = sadness+joy+fear+disgust+anger
+        if sum<1.2:
+            sum = 'I'
+        else:
+            sum = 'R'
         data.append({"id":id, "message_id": message_id, "user_id":user_id, "user_name": user_name, "user_last": user_last,
-                     "message_date":message_date,"text": text})
+                     "message_date":message_date,"text": text, "emotions_sum":sum})
 
     return JsonResponse(data, safe=False)
