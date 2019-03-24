@@ -1,3 +1,4 @@
+var messages_all = [];
 function getchart(){
     $.ajax({
         async: true,
@@ -78,6 +79,7 @@ function getMessages() {
         success : function (data) {
             for (var i = 0; i < data.length; i++) {
                 var message_id = data[i]['message_id'];
+                messages_all.push(data[i]["message_id"]);
                 var user_id = data[i]['user_id'];
                 var user_name = data[i]['user_name'] + ' ' + data[i]['user_last'];
                 var date = data[i]['message_date'];
@@ -142,6 +144,22 @@ function removeIrrelevant() {
 
 }
 
+function clicked(element){
+    aidi = element.id;
+    number = aidi.slice(3);
+    num = (parseInt(number)-1)*10;
+    msg_id = messages_all[Math.floor((num/100)*messages_all.length)];
+    if(a === 1){
+        $('#' + msg_id.toString()).css('color','red');
+        a = 0;
+    }
+    else {
+        $('#' + msg_id.toString()).css('color','black');
+        a = 1;
+    }
+}
+
+var a = 1;
 var x = 1;
 $(document).ready(function () {
     $.ajaxSetup({ cache: true });
@@ -159,10 +177,5 @@ $(document).ready(function () {
     $('#btn-remove-irrelevant').click(removeIrrelevant);
 });
 
-function clicked(element){
-    aidi = element.id;
-    number = aidi.slice(3);
-    num = (parseInt(number)-1)*10;
-    
-}
+
 
