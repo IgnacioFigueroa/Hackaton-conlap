@@ -5,6 +5,9 @@ import re
 import operator
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions, EmotionOptions
+import psycopg2
+from . import views
+conn = psycopg2.connect(database="grupo3", user="grupo3", password="2gKdbj", host="201.238.213.114", port="54321")
 
 
 def index(request):
@@ -69,3 +72,4 @@ def calculate_emotions(message):
     emotions["disgust"] += data["emotion"]["document"]["emotion"]["disgust"]
     emotions["anger"] += data["emotion"]["document"]["emotion"]["anger"]
     return emotions
+
