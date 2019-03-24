@@ -8,6 +8,7 @@ from watson_developer_cloud.natural_language_understanding_v1 import Features, E
 
 
 def index(request):
+
     return render(request, 'home.html', {})
 
 

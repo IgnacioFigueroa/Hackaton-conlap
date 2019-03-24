@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="col-1" style="height: 100px;">
-                    <img src="/static/chatanalyzer/images/happy_emoji.jpg" style="height: 97px">
-                </div>
-                <div class="col-1" style="height: 100px;">
-                    <img src="/static/chatanalyzer/images/sad_emoji.png" style="height: 97px">
-                </div>
-                <div class="col-1" style="height: 100px;">
-                    <img src="/static/chatanalyzer/images/surprised_emoji.png" style="height: 97px">
-                </div>
-                <div class="col-1" style="height: 100px;">
-                    <img src="/static/chatanalyzer/images/angry_emoji.png" style="height: 97px">
-                </div>
+    {% load static %}
+    <script src="/static/chatanalyzer/js/index.js"></script>
+    <body>
+        <nav class="navbar navbar-default" style="background-color: #3875d7;">
+            <div class="container-fluid ">
+                <a class="navbar-brand" style="color: #c4dce8">Sapo</a>
             </div>
-            <div class="col-md-6 offset-md-2">
-                <div class="row">
-                    <div class="col-md-6" style="height: 300px; float: left">
-                        <img src="/static/chatanalyzer/images/chat_template.png" style="height: 297px">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 offset-md-2">
-                        <div class="col-md-6" style="height: 750px; float: right">
-                            <img src="/static/chatanalyzer/images/chat_template.png" style="height: 747px">
+        </nav>
+        <div style="height: 50px"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-1">     </div>
+                <div class="card col-lg-5" style="height: 900px;">
+                    <div class="row" id="graph" style="height: 450px;">
+                        <div class="card-body">
+                            aca va el grafico
                         </div>
                     </div>
+                    <div class="row" id="important_mesagges" style="height: 450px;">
+                        aca va msg importante
+                    </div>
                 </div>
-            </div>
+                <div class="col-lg-1">     </div>
+                <div class="card col-lg-4 scroll-fit" style="height: 900px;">
+                    <nav class="navbar navbar-default" style="background-color: #3875d7;">
+                        <div class="container-fluid ">
+                            <a class="navbar-brand" style="color: #c4dce8">Group Chat</a>
+                        </div>
+                    </nav>
+                    <div class="card-body">what</div>
 
+                </div>
+                <div class="col-lg-1">     </div>
         </div>
-
-    </div>
+        </div>
+    </body>
 
 {% endblock %}
+
 
 
