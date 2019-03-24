@@ -26,7 +26,7 @@ function drawEmotionsChart(array_for_graph, prev){
           title: 'Progress in Conversation (%)'
         },
         vAxis: {
-          title: 'Score'
+          title: 'Intensity'
         },
         backgroundColor: '#f1f8e9'
       };
