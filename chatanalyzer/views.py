@@ -14,44 +14,45 @@ def index(request):
 
 def emotions_graph_data(messages):
     emotions = {'sadness': 0.0, 'joy': 0.0, 'fear': 0.0, 'disgust': 0.0, 'anger': 0.0}
-    #prevalent = []
-    #amount = []
+    prevalent = []
+    amount = 0
     #time = []
-    lower = messages[0]["date"]
-    timestamps = [[messages[0]]]
-    graph_data = [['Percentage', 'Sadness', 'Joy', 'Fear', 'Disgust', 'Anger'], [str(messages[0]["date"])]]
+    lower = len(messages)
+    timestamps = [[]]
+    graph_data = [["x", "Score"]]
     count = 0
-    for i in messages:
-        if lower + 600 > i["date"]:
-            timestamps[count].append(i)
+    for i in range(len(messages)):
+        if (lower/10)*(count+1) > i:
+            timestamps[count].append(messages[i])
         else:
-            timestamps.append([i])
-            graph_data.append([i["date"]])
-            lower = i["date"]
+            timestamps.append([messages[i]])
             count += 1
 
     for j in range(len(timestamps)):
         for i in timestamps[j]:
             try:
-                sentiments = [i["sadness"], i["joy"], i["fear"], i["disgust"], i["anger"]]
-                emotions["sadness"] += sentiments[0]
-                emotions["joy"] += sentiments[1]
-                emotions["fear"] += sentiments[2]
-                emotions["disgust"] += sentiments[3]
-                emotions["anger"] += sentiments[4]
+                sentiments = {'sadness': i["sadness"], 'joy': i["joy"], 'fear': i["fear"], 'disgust': i["disgust"], 'anger': i["anger"]}
+                emotions["sadness"] += float(sentiments["sadness"])
+                emotions["joy"] += float(sentiments["joy"])
+                emotions["fear"] += float(sentiments["fear"])
+                emotions["disgust"] += float(sentiments["disgust"])
+                emotions["anger"] += float(sentiments["anger"])
             except:
+                sentiments = {'sadness': 0, 'joy': 0, 'fear': 0, 'disgust': 0, 'anger': 0}
                 continue
 
-        graph_data[j+1].append(emotions["sadness"])
-        graph_data[j+1].append(emotions["joy"])
-        graph_data[j+1].append(emotions["fear"])
-        graph_data[j+1].append(emotions["disgust"])
-        graph_data[j+1].append(emotions["anger"])
-        #maximum = max(emotions.items(), key=operator.itemgetter(1))[0]
-        #prevalent.append(maximum)
-        #amount.append(emotions[maximum])
+        #graph_data[j].append(emotions["sadness"])
+        #graph_data[j].append(emotions["joy"])
+        #graph_data[j].append(emotions["fear"])
+        #graph_data[j].append(emotions["disgust"])
+        #graph_data[j].append(emotions["anger"])
+        maximum = max(emotions.items(), key=operator.itemgetter(1))[0]
+        prevalent.append(maximum)
+        amount = (emotions[maximum])
+        graph_data.append([j, amount])
+        emotions = {'sadness': 0.0, 'joy': 0.0, 'fear': 0.0, 'disgust': 0.0, 'anger': 0.0}
 
-    return graph_data
+    return graph_data, prevalent
 
 
 def calculate_emotions(message):
