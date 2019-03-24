@@ -38,6 +38,34 @@ function getMessages() {
     })
 }
 
+function getImportant() {
+    var important_body = $('#important_mesagges');
+    $.ajax({
+        async: true,
+        type : 'GET',
+        url: '/get_messages/',
+        datatype : 'json',
+        success : function (data) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]['emotions_sum'] !== 'RI'){
+                    continue;
+                }
+                var message_id = data[i]['message_id'];
+                var user_id = data[i]['user_id'];
+                var user_name = data[i]['user_name'] + ' ' + data[i]['user_last'];
+                var date = data[i]['message_date'];
+                var text = data[i]['text'];
+                var emotions_sum = data[i]['emotions_sum'];
+
+                important_body.append($('<div class="' + emotions_sum + '" id="' + message_id + '">').text(text));
+
+
+            }
+
+        }
+    })
+}
+
 function removeIrrelevant() {
     if(x === 1){
         $('.I').css('color','white');
@@ -60,6 +88,7 @@ function drawEmotionsChart(data){
 var x = 1;
 $(document).ready(function () {
     getMessages();
+    getImportant();
 
     $('#btn-remove-irrelevant').click(removeIrrelevant);
 });

@@ -23,6 +23,8 @@ def get_messages_info(request):
         sum = sadness+joy+fear+disgust+anger
         if sum<1.2:
             sum = 'I'
+        elif(sum>1.2):
+            sum = 'RI'
         else:
             sum = 'R'
         data.append({"id":id, "message_id": message_id, "user_id":user_id, "user_name": user_name, "user_last": user_last,
