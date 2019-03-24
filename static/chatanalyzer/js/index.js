@@ -40,12 +40,14 @@ function getMessages() {
 
 function removeIrrelevant() {
     if(x === 1){
-        $('.I').hide();
+        $('.I').css('color','white');
         x = 0 ;
+        $('#btn-remove-irrelevant').text('Show Irrelevant');
     }
     else{
-        $('.I').show();
+        $('.I').css('color','black');
         x = 1 ;
+        $('#btn-remove-irrelevant').text('Remove Irrelevant');
     }
 
 
@@ -57,6 +59,7 @@ function drawEmotionsChart(data){
 }
 var x = 1;
 $(document).ready(function () {
-    getMessages()
-    $('#btn-remove-irrelevant').click(removeIrrelevant)
+    getMessages();
+
+    $('#btn-remove-irrelevant').click(removeIrrelevant);
 });
