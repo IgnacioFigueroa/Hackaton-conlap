@@ -1,4 +1,3 @@
-var messages_all = [];
 function getchart(){
     $.ajax({
         async: true,
@@ -130,7 +129,7 @@ function getImportant() {
 
 function removeIrrelevant() {
     if(x === 1){
-        $('.I').css('color','white');
+        $('.I').css('color','LightGray');
         x = 0 ;
         $('#btn-remove-irrelevant').text('Show Irrelevant');
     }
@@ -176,6 +175,4 @@ $(document).ready(function () {
 
     $('#btn-remove-irrelevant').click(removeIrrelevant);
 });
-
-
 
