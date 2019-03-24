@@ -68,19 +68,6 @@ function drawEmotionsChart(array_for_graph, prev){
 }
 
 
-$(document).ready(function () {
-    $.ajaxSetup({ cache: true });
-
-    // Download the Google JSAPI.
-    var url = 'https://www.google.com/jsapi'; //?autoload={"modules":[{"name":"visualization","version":"1"}]}';
-    $.getScript(url, function() {
-        // When the JSAPI has been loaded, load the appropriate graph charts. When that is done,
-        // call the callback to draw whatever chart needs to be drawn.
-        google.load("visualization", "1", {'packages': ["corechart"], 'callback': getchart});
-    });
-
-});
-
 function getMessages() {
     var chat_body = $('#chat-box');
     $.ajax({
@@ -97,7 +84,9 @@ function getMessages() {
                 var text = data[i]['text'];
                 var emotions_sum = data[i]['emotions_sum'];
 
-                chat_body.append($('<div class="' + emotions_sum + '" id="' + message_id + '">').text(text));
+                chat_body.append($('<div  class="' + emotions_sum + '" id="' + message_id + '">')
+                    .append($('<p style="margin: 1px">').text(user_name + "     " + date))
+                    .append($('<p class="block">').text(text)));
 
 
             }
@@ -125,7 +114,10 @@ function getImportant() {
                 var text = data[i]['text'];
                 var emotions_sum = data[i]['emotions_sum'];
 
-                important_body.append($('<div class="' + emotions_sum + '" id="' + message_id + '">').text(text));
+                important_body.append($('<div class="' + emotions_sum + '" id="' + message_id + '">')
+                    .append($('<p style="margin-bottom: 1px; margin-right: 200px">').text(user_name + "            " + date))
+                    .append($('<p style="margin: ">').text(text))
+                    .append($('<p>')));
 
 
             }
@@ -150,11 +142,17 @@ function removeIrrelevant() {
 
 }
 
-function drawEmotionsChart(data){
-
-}
 var x = 1;
 $(document).ready(function () {
+    $.ajaxSetup({ cache: true });
+
+    // Download the Google JSAPI.
+    var url = 'https://www.google.com/jsapi'; //?autoload={"modules":[{"name":"visualization","version":"1"}]}';
+    $.getScript(url, function() {
+        // When the JSAPI has been loaded, load the appropriate graph charts. When that is done,
+        // call the callback to draw whatever chart needs to be drawn.
+        google.load("visualization", "1", {'packages': ["corechart"], 'callback': getchart});
+    });
     getMessages();
     getImportant();
 

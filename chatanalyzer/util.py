@@ -2,6 +2,7 @@ from django.http import JsonResponse
 import psycopg2
 from . import views
 from statistics import mean
+from datetime import datetime
 conn = psycopg2.connect(database="grupo3", user="grupo3", password="2gKdbj", host="201.238.213.114", port="54321")
 
 def get_chart_info(request):
@@ -59,9 +60,9 @@ def get_messages_info(request):
                     mr += 1
             c += 1
         f += 1
+        date = datetime.fromtimestamp(r[8]).strftime("%A, %B %d, %Y %I:%M:%S")
+        'Sunday, January 29, 2017 08:30:00'
         data.append({"id": r[0], "message_id": r[1], "user_id": r[2], "user_name": r[3], "user_last": r[4],
-                     "message_date": r[8], "text": r[9], "emotions_sum": relevant})
-    #print(proms[-1])
-    print("solo relevantes:", c, "relev y muy relev:", mr, "de un total de", f)
+                     "message_date": date, "text": r[9], "emotions_sum": relevant})
     # ---
     return JsonResponse(data, safe=False)
