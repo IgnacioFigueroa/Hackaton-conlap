@@ -1,3 +1,5 @@
+var messages_all = [];
+
 function getchart(){
     $.ajax({
         async: true,
@@ -115,7 +117,7 @@ function getImportant() {
                 var text = data[i]['text'];
                 var emotions_sum = data[i]['emotions_sum'];
 
-                important_body.append($('<div class="' + emotions_sum + '" id="' + message_id + '">')
+                important_body.append($('<div class="' + emotions_sum + '" id=" imp' + message_id + '">')
                     .append($('<p style="margin-bottom: 1px; margin-right: 200px">').text(user_name + "            " + date))
                     .append($('<p style="margin: ">').text(text))
                     .append($('<p>')));
