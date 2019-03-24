@@ -68,3 +68,4 @@ def calculate_emotions(message):
     emotions["disgust"] += data["emotion"]["document"]["emotion"]["disgust"]
     emotions["anger"] += data["emotion"]["document"]["emotion"]["anger"]
     return emotions
+

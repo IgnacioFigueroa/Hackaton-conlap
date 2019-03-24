@@ -12,3 +12,14 @@ def get_chart_info(request):
         data.append({"joy":joy, "sadness":sadness, "fear":fear, "disgust":disgust, "anger": anger, "text": text, "date":message_date})
 
     return JsonResponse(views.emotions_graph_data(data), safe=False)
+
+def get_messages_info(request):
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM message")
+    rows = cursor.fetchall()
+    data = []
+    for id, message_id, user_id, user_name, user_last, chat_id, chat_title, chat_type, message_date, text, sadness, joy, fear, disgust, anger in rows:
+        data.append({"id":id, "message_id": message_id, "user_id":user_id, "user_name": user_name, "user_last": user_last,
+                     "message_date":message_date,"text": text})
+
+    return JsonResponse(data, safe=False)
